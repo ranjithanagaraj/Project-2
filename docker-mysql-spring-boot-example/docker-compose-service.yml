@@ -1,0 +1,19 @@
+version: "2"
+services:
+    webserver:
+    image: users-mysql
+    build: .
+    ports:
+      - "8089:8089"
+    links:
+      - mysql
+    mysql-standalone:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+    - MYSQL_USER=sa
+    - MYSQL_PASSWORD=password
+    - MYSQL_DATABASE= test
+    - MYSQL_ROOT_PASSWORD=password
+   

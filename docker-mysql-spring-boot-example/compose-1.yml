@@ -1,0 +1,24 @@
+version: '2'
+services:
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=test      
+      - MYSQL_USER=sa
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+  web:
+    build: .
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - 8089:8089
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=sa
+      - DATABASE_NAME=test
+      - DATABASE_PORT=3306
